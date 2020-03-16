@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginScreen from './screens/LoginScreen';
+import TestScreen from './screens/TestScreen';
 import useLinking from './navigation/useLinking';
 
 const Stack = createStackNavigator();
@@ -52,6 +53,7 @@ export default function App(props) {
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
           <Stack.Navigator>
             <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Test" component={TestScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

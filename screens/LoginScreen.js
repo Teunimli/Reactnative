@@ -4,8 +4,17 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 export default class App extends React.Component {
   state={
     username:"",
-    password:""
+    password:"",
   }
+    authenticate=(username,password)=>{
+
+      if (username == 'test' && password == 'test'){
+          console.log(username);
+          console.log(password);
+          this.props.navigation.navigate("Test")
+      }
+    }
+
   render(){
     return (
       <View style={styles.container}>
@@ -13,7 +22,7 @@ export default class App extends React.Component {
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Gebruikersnaam..." 
+            placeholder="Gebruikersnaam"
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({username:text})}/>
         </View>
@@ -21,11 +30,11 @@ export default class App extends React.Component {
           <TextInput  
             secureTextEntry
             style={styles.inputText}
-            placeholder="Wachtwoord..." 
+            placeholder="Wachtwoord"
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({password:text})}/>
         </View>
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity style={styles.loginBtn} onPress={()=>this.authenticate(this.state.username,this.state.password)}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>  
       </View>
