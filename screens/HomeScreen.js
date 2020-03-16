@@ -3,12 +3,20 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 
 export default class App extends React.Component {
 
+    logout=()=> {
+        this.props.navigation.navigate("Login")
+    }
+
     render(){
-        return (
-            <View style={styles.container}>
-                <Text style={styles.logo}>BarrocIT</Text>
-            </View>
-        );
+    return (
+        <View style={styles.container}>
+            <Text style={styles.logo}>BarrocIT</Text>
+
+            <TouchableOpacity style={styles.logoutBtn} onPress={()=>this.logout()}>
+                <Text style={styles.logOutText}>LogOut</Text>
+            </TouchableOpacity>
+        </View>
+    );
     }
 }
 
@@ -42,7 +50,7 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:11
     },
-    loginBtn:{
+    logoutBtn:{
         width:"80%",
         backgroundColor:"#fb5b5a",
         borderRadius:25,
@@ -52,7 +60,7 @@ const styles = StyleSheet.create({
         marginTop:40,
         marginBottom:10
     },
-    loginText:{
+    logOutText:{
         color:"white"
     }
 });
