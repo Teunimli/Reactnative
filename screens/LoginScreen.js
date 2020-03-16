@@ -12,6 +12,14 @@ export default class App extends React.Component {
           console.log(username);
           console.log(password);
           this.props.navigation.navigate("Test")
+      }else{
+          alert(
+              'Something went wrong',
+              [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+              ],
+              {cancelable: false},
+          );
       }
     }
 
