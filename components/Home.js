@@ -44,14 +44,6 @@ export default function Home(props) {
 
             setIsFetching(false)
         });
-
-        //OPTION 2 - FAKE API
-        // let url = "https://my-json-server.typicode.com/mesandigital/demo/quotes";
-        // axios.get(url)
-        //     .then(res => res.data)
-        //     .then((data) => dispatch(addQuotes(data)))
-        //     .catch(error => alert(error.message))
-        //     .finally(() => setIsFetching(false));
     };
 
     //==================================================================================================
@@ -91,13 +83,6 @@ export default function Home(props) {
                 AsyncStorage.setItem('quotes', JSON.stringify(quotes), () => dispatch(deleteQuote(id)));
             }
         });
-
-        //OPTION 2 - FAKE API
-        // let url = "https://my-json-server.typicode.com/mesandigital/demo/quotes";
-        // axios.delete(url, {data:{id:id}})
-        //     .then((res) => dispatch(deleteQuote(id)))
-        //     .catch(error => alert(error.message))
-        //     .finally(() => setIsFetching(false));
     };
 
     //==================================================================================================
