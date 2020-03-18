@@ -9,7 +9,7 @@ export default class App extends React.Component {
     authenticate=(username,password)=>{
 
       if (username == 'test' && password == 'test'){
-          this.props.navigation.navigate("Home")
+          this.props.navigation.navigate("Welcome")
       }else{
           alert(
               'Something went wrong',
