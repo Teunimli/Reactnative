@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
@@ -6,9 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoginScreen from './screens/LoginScreen';
-import WelcomeScreen from './screens/WelcomeScreen';
-import HomeScreen from './screens/HomeScreen';
+import store from './store.js'; //Import the store
+import Router from './components/index' //Import the component file
 import useLinking from './navigation/useLinking';
 
 const Stack = createStackNavigator();
@@ -49,16 +49,9 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+      <Provider store={store}>
+        <Router />
+      </Provider>
     );
   }
 }
