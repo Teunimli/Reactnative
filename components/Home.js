@@ -103,7 +103,7 @@ export default function Home(props) {
                     keyExtractor={(item, index) => `quotes_${index}`}/>
 
                 <TouchableHighlight style={styles.floatingButton}
-                                    underlayColor='#ff7043'
+                                    underlayColor='#003f5c'
                                     onPress={() => navigation.navigate('NewQuote', {title:"New Quote"})}>
                     <Text style={{fontSize: 25, color: 'white'}}>+</Text>
                 </TouchableHighlight>
@@ -115,12 +115,12 @@ export default function Home(props) {
 const styles = StyleSheet.create({
 
     container: {
-        flex:1,
-        backgroundColor: '#F5F5F5'
+        flex: 1,
+        backgroundColor: '#003f5c'
     },
 
     activityIndicatorContainer:{
-        backgroundColor: "#fff",
+        backgroundColor: "#003f5c",
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,

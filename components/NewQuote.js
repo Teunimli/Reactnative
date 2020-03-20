@@ -121,9 +121,6 @@ export default function NewQuote(props) {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <View style={{flex: 1, justifyContent: "center"}}>
-                        <Text style={[styles.count, (MAX_LENGTH - text.length <= 10) && {color: "red"}]}> {MAX_LENGTH - text.length}</Text>
-                    </View>
                     <View style={{flex: 1, alignItems: "flex-end"}}>
                         <TouchableHighlight style={[styles.button]} disabled={disabled} onPress={onSave}
                                             underlayColor="rgba(0, 0, 0, 0)">
@@ -141,14 +138,15 @@ export default function NewQuote(props) {
 
 const styles = StyleSheet.create({
     flex: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#003f5c'
     },
 
     buttonContainer: {
         height: 70,
         flexDirection: "row",
         padding: 12,
-        backgroundColor: "white"
+        backgroundColor: '#003f5c'
     },
 
     count: {
@@ -167,6 +165,7 @@ const styles = StyleSheet.create({
 
     buttonText: {
         fontSize: 16,
+
     },
 
     author: {
@@ -174,13 +173,14 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         height: 80,
         padding: 16,
-        backgroundColor: 'white',
+        backgroundColor: '#003f5c',
+        color: "#FFF"
     },
 
     text: {
         fontSize: 30,
         lineHeight: 33,
-        color: "#333333",
+        color: "#FFF",
         padding: 16,
         paddingTop: 16,
         minHeight: 170,

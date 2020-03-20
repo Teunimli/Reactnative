@@ -58,10 +58,10 @@ export default function ListItem ({item, index, navigation, onDelete, onEdit}){
             <View style={styles.row}>
                 <View style={[styles.container, {backgroundColor: random()}]}>
                     <Text style={styles.quote}>
-                        {item.text}
+                        Quote: {item.text}
                     </Text>
                     <Text style={styles.author}>
-                        {item.author}
+                        Author: {item.author}
                     </Text>
                 </View>
             </View>
@@ -75,8 +75,8 @@ export default function ListItem ({item, index, navigation, onDelete, onEdit}){
 const styles = StyleSheet.create({
     row:{
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor:"#ccc",
-        backgroundColor: '#FFF',
+        borderBottomColor:"#003f5c",
+        backgroundColor: '#003f5c',
         padding: 10
     },
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 15,
         color: '#FFF',
-        textAlign: "right"
+        textAlign: "center"
     },
 
     quote: {
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         lineHeight: 21,
         color: '#FFF',
+        textAlign: "center"
     },
 
     buttons:{
