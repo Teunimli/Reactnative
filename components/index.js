@@ -29,7 +29,7 @@ const AppStack = createStackNavigator({
     NewQuote:{
         screen: NewQuoteScreen,
         navigationOptions: ({ navigation }) => ({
-            title: `New Quote`,
+            title: `Bedrijf`,
         }),
     }
 });

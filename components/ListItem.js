@@ -57,11 +57,21 @@ export default function ListItem ({item, index, navigation, onDelete, onEdit}){
             )}>
             <View style={styles.row}>
                 <View style={[styles.container, {backgroundColor: random()}]}>
-                    <Text style={styles.quote}>
-                        Quote: {item.text}
+                    <Text style={styles.textfield}>
+                        Bedrijfsnaam: {item.companyname}
                     </Text>
-                    <Text style={styles.author}>
-                        Author: {item.author}
+                    <Text style={styles.textfield}>
+                        Eigenaar: {item.owner}
+                    </Text>
+                    <Text style={styles.textfield}>
+                        Adres: {item.adres}
+
+                    </Text>
+                    <Text style={styles.textfield}>
+                        Telefoon nummer: {item.phonenumber}
+                    </Text>
+                    <Text style={styles.textfield}>
+                        Email: {item.email}
                     </Text>
                 </View>
             </View>
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
 
-    author: {
+    important: {
         marginTop: 25,
         marginBottom: 10,
         fontSize: 15,
@@ -92,7 +102,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
 
-    quote: {
+    textfield: {
         marginTop: 5,
         fontSize: 17,
         lineHeight: 21,

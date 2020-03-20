@@ -28,6 +28,11 @@ export default function NewQuote(props) {
     const [isSaving, setIsSaving] = useState(false);
     const [author, setAuthor] = useState(quote ? quote.author : "");
     const [text, setText] = useState(quote ? quote.text : "");
+    const [companyname, setCompanyName] = useState(quote ? quote.companyname : "");
+    const [owner, setOwner] = useState(quote ? quote.owner : "");
+    const [adres, setAdres] = useState(quote ? quote.adres : "");
+    const [phonenumber, setPhoneNumber] = useState(quote ? quote.phonenumber : "");
+    const [email, setEmail] = useState(quote ? quote.email : "");
 
     //==================================================================================================
 
@@ -40,9 +45,14 @@ export default function NewQuote(props) {
             quote_ = quote;
             quote_['author'] = author;
             quote_['text'] = text;
+            quote_['companyname'] = companyname;
+            quote_['owner'] = owner;
+            quote_['adres'] = adres;
+            quote_['phonenumber'] = phonenumber;
+            quote_['email'] = email;
         } else {
             let id = generateID();
-            quote_ = {"id": id, "author": author, "text": text};
+            quote_ = {"id": id, "author": author, "text": text, "companyname": companyname, "owner": owner, "adres": adres, "phonenumber": phonenumber, "email": email};
         }
 
         //OPTION 1 - ADD TO LOCAL STORAGE DATA
@@ -100,24 +110,45 @@ export default function NewQuote(props) {
     //==================================================================================================
 
     //4 - RENDER
-    let disabled = (author.length > 0 && text.length > 0) ? false : true;
+    let disabled = (companyname.length > 0, owner.length > 0, adres.length > 0) ? false : true;
     return (
         <KeyboardAvoidingView keyboardVerticalOffset={Header.HEIGHT} style={styles.flex} behavior="padding">
             <SafeAreaView style={styles.flex}>
                 <View style={styles.flex}>
                     <TextInput
-                        onChangeText={(text) => setAuthor(text)}
-                        placeholder={"Author"}
+                        onChangeText={(text) => setCompanyName(text)}
+                        placeholder={"Bedrijfs Naam"}
                         autoFocus={true}
-                        style={[styles.author]}
-                        value={author}/>
+                        style={[styles.textfield]}
+                        value={companyname}/>
+
                     <TextInput
-                        multiline={true}
-                        onChangeText={(text) => setText(text)}
-                        placeholder={"Enter Quote"}
-                        style={[styles.text]}
-                        maxLength={MAX_LENGTH}
-                        value={text}/>
+                        onChangeText={(text) => setOwner(text)}
+                        placeholder={"Eigenaar"}
+                        autoFocus={true}
+                        style={[styles.textfield]}
+                        value={owner}/>
+
+                    <TextInput
+                        onChangeText={(text) => setAdres(text)}
+                        placeholder={"Adres"}
+                        autoFocus={true}
+                        style={[styles.textfield]}
+                        value={adres}/>
+
+                    <TextInput
+                        onChangeText={(text) => setPhoneNumber(text)}
+                        placeholder={"Telefoon Nummer"}
+                        autoFocus={true}
+                        style={[styles.textfield]}
+                        value={phonenumber}/>
+
+                    <TextInput
+                        onChangeText={(text) => setEmail(text)}
+                        placeholder={"Email"}
+                        autoFocus={true}
+                        style={[styles.textfield]}
+                        value={email}/>
                 </View>
 
                 <View style={styles.buttonContainer}>
@@ -168,7 +199,7 @@ const styles = StyleSheet.create({
 
     },
 
-    author: {
+    textfield: {
         fontSize: 20,
         lineHeight: 22,
         height: 80,
