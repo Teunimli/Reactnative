@@ -11,10 +11,10 @@ export default function LoadingScreen(props) {
 
     function checkLocalData(){
         //Check if LocalStorage has been populated with the sample data
-        AsyncStorage.getItem('quotes', (err, data) => {
+        AsyncStorage.getItem('customers', (err, data) => {
             //if it doesn't exist, extract from json fil
             if (data === null){
-                AsyncStorage.setItem('quotes', JSON.stringify(SampleData.quotes));//save the initial data in Async
+                AsyncStorage.setItem('customers', JSON.stringify(SampleData.customers));//save the initial data in Async
 
                 props.navigation.navigate('App'); //Navigate to the home page
             }else{

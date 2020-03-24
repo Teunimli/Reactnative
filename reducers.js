@@ -1,54 +1,54 @@
 import { combineReducers } from 'redux';
 
-import { QUOTES_AVAILABLE, ADD_QUOTE, UPDATE_QUOTE, DELETE_QUOTE } from "./actions" //Import the actions types constant we defined in our actions
+import { CUSTOMERS_AVAILABLE, ADD_CUSTOMER, UPDATE_CUSTOMER, DELETE_CUSTOMER } from "./actions" //Import the actions types constant we defined in our actions
 
-let dataState = { quotes: [] };
+let dataState = { customers: [] };
 
 const dataReducer = (state = dataState, action) => {
     switch (action.type) {
-        case ADD_QUOTE:
-            let { quote } = action.data;
+        case ADD_CUSTOMER:
+            let { customer } = action.data;
 
             //clone the current state
-            let clone = JSON.parse(JSON.stringify(state.quotes));
+            let clone = JSON.parse(JSON.stringify(state.customers));
 
-            clone.unshift(quote); //add the new quote to the top
+            clone.unshift(customer); //add the new customer to the top
 
-            return {...state, quotes: clone};
+            return {...state, customers: clone};
 
-        case QUOTES_AVAILABLE:
-            let { quotes } = action.data;
+        case CUSTOMERS_AVAILABLE:
+            let { customers } = action.data;
 
-            return {...state, quotes};
+            return {...state, customers};
 
-        case UPDATE_QUOTE:{
-            let { quote } = action.data;
+        case UPDATE_CUSTOMER:{
+            let { customer } = action.data;
 
             //clone the current state
-            let clone = JSON.parse(JSON.stringify(state.quotes));
+            let clone = JSON.parse(JSON.stringify(state.customers));
 
             //check if bookmark already exist
-            const index = clone.findIndex((obj) => obj.id === quote.id);
+            const index = clone.findIndex((obj) => obj.id === customer.id);
 
-            //if the quote is in the array, update the quote
-            if (index !== -1) clone[index] = quote;
+            //if the customer is in the array, update the customer
+            if (index !== -1) clone[index] = customer;
 
-            return {...state, quotes: clone};
+            return {...state, customers: clone};
         }
 
-        case DELETE_QUOTE:{
+        case DELETE_CUSTOMER:{
             let { id } = action.data;
 
             //clone the current state
-            let clone = JSON.parse(JSON.stringify(state.quotes));
+            let clone = JSON.parse(JSON.stringify(state.customers));
 
-            //check if quote already exist
+            //check if customer already exist
             const index = clone.findIndex((obj) => obj.id === id);
 
-            //if the quote is in the array, remove the quote
+            //if the customer is in the array, remove the customer
             if (index !== -1) clone.splice(index, 1);
 
-            return {...state, quotes: clone};
+            return {...state, customers: clone};
         }
 
         default:

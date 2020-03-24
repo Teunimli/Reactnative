@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addQuotes, deleteQuote } from "../actions";
+import { addCustomers, deleteCustomer } from "../actions";
 
 import ListItem from "./ListItem";
 
@@ -24,7 +24,7 @@ export default function Home(props) {
 
     //Access Redux Store State
     const dataReducer = useSelector((state) => state.dataReducer);
-    const { quotes } = dataReducer;
+    const { customers } = dataReducer;
 
     //==================================================================================================
 
@@ -38,9 +38,9 @@ export default function Home(props) {
         setIsFetching(true);
 
         //OPTION 1 - LOCAL DATA
-        AsyncStorage.getItem('quotes', (err, quotes) => {
+        AsyncStorage.getItem('customers', (err, customers) => {
             if (err) alert(err.message);
-            else if (quotes !== null) dispatch(addQuotes(JSON.parse(quotes)));
+            else if (customers !== null) dispatch(addCustomers(JSON.parse(customers)));
 
             setIsFetching(false)
         });
@@ -57,30 +57,30 @@ export default function Home(props) {
 
     //==================================================================================================
 
-    //5 - EDIT QUOTE
+    //5 - EDIT CUSTOMER
     const onEdit = (item) => {
-        navigation.navigate('NewQuote', {quote: item, title:"Edit Quote"})
+        navigation.navigate('NewCustomer', {customer: item, title:"Edit Customer"})
     };
 
     //==================================================================================================
 
-    //6 - DELETE QUOTE
+    //6 - DELETE CUSTOMER
     const onDelete = (id) => {
 
         //OPTION 1 - UPDATE LOCAL STORAGE DATA
-        AsyncStorage.getItem('quotes', (err, quotes) => {
+        AsyncStorage.getItem('customers', (err, customers) => {
             if (err) alert(err.message);
-            else if (quotes !== null){
-                quotes = JSON.parse(quotes);
+            else if (customers !== null){
+                customers = JSON.parse(customers);
 
-                //find the index of the quote with the id passed
-                const index = quotes.findIndex((obj) => obj.id === id);
+                //find the index of the customer with the id passed
+                const index = customers.findIndex((obj) => obj.id === id);
 
-                // remove the quote
-                if (index !== -1) quotes.splice(index, 1);
+                // remove the customer
+                if (index !== -1) customers.splice(index, 1);
 
                 //Update the local storage
-                AsyncStorage.setItem('quotes', JSON.stringify(quotes), () => dispatch(deleteQuote(id)));
+                AsyncStorage.setItem('customers', JSON.stringify(customers), () => dispatch(deleteCustomer(id)));
             }
         });
     };
@@ -98,13 +98,13 @@ export default function Home(props) {
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
-                    data={quotes}
+                    data={customers}
                     renderItem={renderItem}
-                    keyExtractor={(item, index) => `quotes_${index}`}/>
+                    keyExtractor={(item, index) => `customers_${index}`}/>
 
                 <TouchableHighlight style={styles.floatingButton}
                                     underlayColor='#003f5c'
-                                    onPress={() => navigation.navigate('NewQuote', {title:"New Quote"})}>
+                                    onPress={() => navigation.navigate('NewCustomer', {title:"New Customer"})}>
                     <Text style={{fontSize: 25, color: 'white'}}>+</Text>
                 </TouchableHighlight>
             </SafeAreaView>

@@ -1,28 +1,28 @@
-export const QUOTES_AVAILABLE = 'QUOTES_AVAILABLE';
-export const ADD_QUOTE = 'ADD_QUOTE';
-export const UPDATE_QUOTE = 'UPDATE_QUOTE';
-export const DELETE_QUOTE = 'DELETE_QUOTE';
+export const CUSTOMERS_AVAILABLE = 'CUSTOMERS_AVAILABLE';
+export const ADD_CUSTOMER = 'ADD_CUSTOMER';
+export const UPDATE_CUSTOMER = 'UPDATE_CUSTOMER';
+export const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
 
-// Get Quotes
-export const addQuotes = (quotes) => ({
-    type: QUOTES_AVAILABLE,
-    data: {quotes}
+// Get Customers
+export const addCustomers = (customers) => ({
+    type: CUSTOMERS_AVAILABLE,
+    data: {customers}
 });
 
-// Add Quote - CREATE (C)
-export const addQuote = (quote) => ({
-    type: ADD_QUOTE,
-    data: {quote}
+// Add Customer - CREATE (C)
+export const addCustomer = (customer) => ({
+    type: ADD_CUSTOMER,
+    data: {customer}
 });
 
-// Update Quote - UPDATE (U)
-export const updateQuote = (quote) => ({
-    type: UPDATE_QUOTE,
-    data: {quote}
+// Update Customer - UPDATE (U)
+export const updateCustomer = (customer) => ({
+    type: UPDATE_CUSTOMER,
+    data: {customer}
 });
 
-// Delete Quote - DELETE (D)
-export const deleteQuote = (id) => ({
-    type: DELETE_QUOTE,
+// Delete Customer - DELETE (D)
+export const deleteCustomer = (id) => ({
+    type: DELETE_CUSTOMER,
     data: {id}
 });
