@@ -5,7 +5,7 @@ import LoadingScreen from './LoadingScreen'
 import LoginScreen from '../screens/LoginScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import HomeScreen from './Home'
-import NewQuoteScreen from './NewQuote'
+import NewCustomerScreen from './NewCustomer'
 
 const AppStack = createStackNavigator({
     Login:{
@@ -26,8 +26,8 @@ const AppStack = createStackNavigator({
             title: `Home`,
         }),
     },
-    NewQuote:{
-        screen: NewQuoteScreen,
+    NewCustomer:{
+        screen: NewCustomerScreen,
         navigationOptions: ({ navigation }) => ({
             title: `Bedrijf`,
         }),

@@ -13,84 +13,74 @@ import {
 import {useDispatch} from 'react-redux';
 import {Header} from 'react-navigation-stack';
 
-import {addQuote, updateQuote} from "../actions";
+import {addCustomer, updateCustomer} from "../actions";
 
 
 const MAX_LENGTH = 250;
 
-export default function NewQuote(props) {
+export default function NewCustomer(props) {
     const dispatch = useDispatch();
     const {navigation} = props;
 
-    let quote = navigation.getParam('quote', null);
+    let customer = navigation.getParam('customer', null);
 
     //1 - DECLARE VARIABLES
     const [isSaving, setIsSaving] = useState(false);
-    const [author, setAuthor] = useState(quote ? quote.author : "");
-    const [text, setText] = useState(quote ? quote.text : "");
-    const [companyname, setCompanyName] = useState(quote ? quote.companyname : "");
-    const [owner, setOwner] = useState(quote ? quote.owner : "");
-    const [adres, setAdres] = useState(quote ? quote.adres : "");
-    const [phonenumber, setPhoneNumber] = useState(quote ? quote.phonenumber : "");
-    const [email, setEmail] = useState(quote ? quote.email : "");
+    const [author, setAuthor] = useState(customer ? customer.author : "");
+    const [text, setText] = useState(customer ? customer.text : "");
+    const [companyname, setCompanyName] = useState(customer ? customer.companyname : "");
+    const [owner, setOwner] = useState(customer ? customer.owner : "");
+    const [adres, setAdres] = useState(customer ? customer.adres : "");
+    const [phonenumber, setPhoneNumber] = useState(customer ? customer.phonenumber : "");
+    const [email, setEmail] = useState(customer ? customer.email : "");
 
     //==================================================================================================
 
     //2 - GET FLATLIST DATA
     const onSave = () => {
-        let edit = quote !== null;
-        let quote_ = {};
+        let edit = customer !== null;
+        let customer_ = {};
 
         if (edit) {
-            quote_ = quote;
-            quote_['author'] = author;
-            quote_['text'] = text;
-            quote_['companyname'] = companyname;
-            quote_['owner'] = owner;
-            quote_['adres'] = adres;
-            quote_['phonenumber'] = phonenumber;
-            quote_['email'] = email;
+            customer_ = customer;
+            customer_['author'] = author;
+            customer_['text'] = text;
+            customer_['companyname'] = companyname;
+            customer_['owner'] = owner;
+            customer_['adres'] = adres;
+            customer_['phonenumber'] = phonenumber;
+            customer_['email'] = email;
         } else {
             let id = generateID();
-            quote_ = {"id": id, "author": author, "text": text, "companyname": companyname, "owner": owner, "adres": adres, "phonenumber": phonenumber, "email": email};
+            customer_ = {"id": id, "author": author, "text": text, "companyname": companyname, "owner": owner, "adres": adres, "phonenumber": phonenumber, "email": email};
         }
 
         //OPTION 1 - ADD TO LOCAL STORAGE DATA
-        AsyncStorage.getItem('quotes', (err, quotes) => {
+        AsyncStorage.getItem('customers', (err, customers) => {
             if (err) alert(err.message);
-            else if (quotes !== null){
-                quotes = JSON.parse(quotes);
+            else if (customers !== null){
+                customers = JSON.parse(customers);
 
                 if (!edit){
-                    //add the new quote to the top
-                    quotes.unshift(quote_);
+                    //add the new customer to the top
+                    customers.unshift(customer_);
                 }else{
-                    //find the index of the quote with the quote id
-                    const index = quotes.findIndex((obj) => obj.id === quote_.id);
+                    //find the index of the customer with the customer id
+                    const index = customers.findIndex((obj) => obj.id === customer_.id);
 
-                    //if the quote is in the array, replace the quote
-                    if (index !== -1) quotes[index] = quote_;
+                    //if the customer is in the array, replace the customer
+                    if (index !== -1) customers[index] = customer_;
                 }
 
                 //Update the local storage
-                AsyncStorage.setItem('quotes', JSON.stringify(quotes), () => {
-                    if (!edit) dispatch(addQuote(quote_));
-                    else dispatch(updateQuote(quote_));
+                AsyncStorage.setItem('customers', JSON.stringify(customers), () => {
+                    if (!edit) dispatch(addCustomer(customer_));
+                    else dispatch(updateCustomer(customer_));
 
                     navigation.goBack();
                 });
             }
         });
-
-        //OPTION 2 - FAKE API
-        // let url = "https://my-json-server.typicode.com/mesandigital/demo/quotes";
-        // axios.post(url, quote_)
-        //     .then(res => res.data)
-        //     .then((data) => {
-        //         dispatch(quote ? updateQuote(data) : addQuote(data));
-        //         navigation.goBack();
-        //     })
-        //     .catch(error => alert(error.message))
     };
 
     //==================================================================================================
